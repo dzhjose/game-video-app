@@ -1,0 +1,11 @@
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+//styles
+@import './vars.scss';
+@import './components/index.scss';
+@import './components/App.scss';
+
+body{
+    background-color: $body-background;
+}
