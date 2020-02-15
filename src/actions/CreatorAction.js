@@ -7,7 +7,7 @@ export const fetchCreators = () => dispatch => {
     .get("https://api.rawg.io/api/creators")
     .then(rs => {
       console.log(rs.data);
-      dispatch({ type: FETCH_ITEMS, pyload: rs.data.results });
+      dispatch({ type: FETCH_ITEMS, payload: rs.data.results });
     })
     .catch(e => {
       console.log(e);
@@ -19,7 +19,7 @@ export const getItem = id => dispatch => {
     .get(`https://api.rawg.io/api/creators/${id}`)
     .then(rs => {
       console.log(rs.data);
-      dispatch({ type: GET_ITEM, pyload: rs.data });
+      dispatch({ type: GET_ITEM, payload: rs.data });
     })
     .catch(e => {
       console.log(e);

@@ -1,4 +1,4 @@
-import { FETCH_GAMES } from "../actions/types";
+import { FETCH_GAMES, GET_GAME } from "../actions/types";
 
 const initialState = {
   game_items: [],
@@ -12,8 +12,14 @@ export const GamesReducer = (state = initialState, action) => {
     case FETCH_GAMES:
       return {
         ...state,
-        game_items: action.pyload
+        game_items: action.payload
       };
+      case GET_GAME:{
+        return {
+          ...state,
+          game_item: action.payload
+        }
+      }
     default:
       return state;
   }

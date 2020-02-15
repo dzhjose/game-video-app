@@ -12,13 +12,13 @@ export const CreatorReducer = (state = initialState, action) => {
     case FETCH_ITEMS:
       return {
         ...state,
-        items: action.pyload,
+        items: action.payload,
         loader: false
       };
     case GET_ITEM:
       return {
         ...state,
-        item: action.pyload,
+        item: action.payload,
         loader: false
       }
     default:
