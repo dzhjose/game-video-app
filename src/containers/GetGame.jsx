@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getGame } from "../actions/GamesAction"
 import DetailGameItem from "../presentations/DetailGameItem"
-import Tabs from "../components/Tabs/Tabs"
 
 class GetGame extends Component {
   constructor(props) {
@@ -13,22 +12,24 @@ class GetGame extends Component {
     this.props.getGame(this.props.id);
   }
 
+  _renderGameDetail(){
+    if(Object.keys(this.props.game).length > 0){
+      return <DetailGameItem game={this.props.game} />
+    }
+
+    return (
+      <div>
+        <h2>No game detail</h2>
+      </div>
+    );
+  }
+
 
   render() {
     return (
-      <div>
-        <Tabs>
-          <div label="INFO">
-            INFO
-          </div>
-          <div label="VIDEOS">
-            VIDEOS
-          </div>
-          <div label="STORES">
-            STORES
-          </div>
-        </Tabs>
-      </div>
+      <React.Fragment>
+        {this._renderGameDetail()}
+      </React.Fragment>
     )
   }
 }

@@ -28,13 +28,13 @@ const NavBar = () => {
 
       <div id="navbarDark" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
         <div className="navbar-end">
-          <Link  to="/" className="navbar-item">
+          <Link  to="/" className="navbar-item" onClick={() => {set_isActive(!isActive)}}>
             Home
           </Link>
-          <Link  to="/games" className="navbar-item">
+          <Link  to="/games" className="navbar-item" onClick={() => {set_isActive(!isActive)}}>
             Games
           </Link>
-          <Link  to="/creators" className="navbar-item">
+          <Link  to="/creators" className="navbar-item" onClick={() => {set_isActive(!isActive)}}>
             Creators
           </Link>
           {/* <div className="navbar-item has-dropdown is-hoverable">

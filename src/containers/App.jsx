@@ -21,7 +21,17 @@ const App = () => {
             <Switch>
               <Route exact path="/">
                 <Home>
-                  <ListCreators />
+                  <div className="columns is-multiline">
+                    <div className="column is-12">
+                      <h2 className="subtitle">Games</h2>
+                      <Games />
+                    </div>
+                    <hr />
+                    <div className="column is-12">
+                      <h2 className="subtitle">Creators</h2>
+                      <ListCreators />
+                    </div>
+                  </div>
                 </Home>
               </Route>
               <Route exact path="/games">
