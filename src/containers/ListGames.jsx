@@ -1,35 +1,31 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { fetchGames } from '../actions/GamesAction'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGames } from "../actions/GamesAction";
 import GameItem from "../presentations/GameItem";
 
-class ListGames extends Component {
-  componentDidMount(){
-    this.props.fetchGames();
-  }
+const ListGames = () => {
+  const dispatch = useDispatch();
+  const games = useSelector((state) => state.games.game_items);
 
-  _renderGames(){
-    if (this.props.games.length > 0) {
+  useEffect(() => {
+    dispatch(fetchGames());
+  }, [dispatch]);
+
+  const renderGames = () => {
+    if (games && games.length > 0) {
       return (
         <div className="columns is-multiline">
-          {this.props.games.map(game => { return <GameItem key={game.id} game={game} /> })}
+          {games.map((game) => (
+            <GameItem key={game.id} game={game} />
+          ))}
         </div>
-      )
+      );
     }
 
-    return <h2 className="subtitle">No games items to see</h2>
-  }
-  render() {
-    return (
-      <React.Fragment>
-        {this._renderGames()}
-      </React.Fragment>
-    )
-  }
-}
+    return <h2 className="subtitle">No games items to see</h2>;
+  };
 
-const mapStateToProps = state => ({
-  games: state.games.game_items
-})
+  return <>{renderGames()}</>;
+};
 
-export default connect(mapStateToProps, { fetchGames }) (ListGames);
+export default ListGames;

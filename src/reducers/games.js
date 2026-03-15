@@ -1,4 +1,5 @@
-import { FETCH_GAMES, GET_GAME } from "../actions/types";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchGames, getGame } from "../actions/GamesAction";
 
 const initialState = {
   game_items: [],
@@ -7,20 +8,33 @@ const initialState = {
   loader: false
 };
 
-export const GamesReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_GAMES:
-      return {
-        ...state,
-        game_items: action.payload
-      };
-      case GET_GAME:{
-        return {
-          ...state,
-          game_item: action.payload
-        }
-      }
-    default:
-      return state;
+const gamesSlice = createSlice({
+  name: "games",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchGames.pending, (state) => {
+        state.loader = true;
+      })
+      .addCase(fetchGames.fulfilled, (state, action) => {
+        state.game_items = action.payload;
+        state.loader = false;
+      })
+      .addCase(fetchGames.rejected, (state) => {
+        state.loader = false;
+      })
+      .addCase(getGame.pending, (state) => {
+        state.loader = true;
+      })
+      .addCase(getGame.fulfilled, (state, action) => {
+        state.game_item = action.payload;
+        state.loader = false;
+      })
+      .addCase(getGame.rejected, (state) => {
+        state.loader = false;
+      });
   }
-};
+});
+
+export default gamesSlice.reducer;

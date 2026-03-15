@@ -1,27 +1,18 @@
-import { FETCH_ITEMS, GET_ITEM } from "./types";
-
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchCreators = () => dispatch => {
-  axios
-    .get("https://api.rawg.io/api/creators")
-    .then(rs => {
-      console.log(rs.data);
-      dispatch({ type: FETCH_ITEMS, payload: rs.data.results });
-    })
-    .catch(e => {
-      console.log(e);
-    });
-};
+export const fetchCreators = createAsyncThunk(
+  "creators/fetchCreators",
+  async () => {
+    const rs = await axios.get("https://api.rawg.io/api/creators");
+    return rs.data.results;
+  }
+);
 
-export const getItem = id => dispatch => {
-  axios
-    .get(`https://api.rawg.io/api/creators/${id}`)
-    .then(rs => {
-      console.log(rs.data);
-      dispatch({ type: GET_ITEM, payload: rs.data });
-    })
-    .catch(e => {
-      console.log(e);
-    });
-};
+export const getItem = createAsyncThunk(
+  "creators/getItem",
+  async (id) => {
+    const rs = await axios.get(`https://api.rawg.io/api/creators/${id}`);
+    return rs.data;
+  }
+);

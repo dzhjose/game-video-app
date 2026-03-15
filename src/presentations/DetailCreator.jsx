@@ -1,6 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 
 const DetailCreator = (props) => {
@@ -9,13 +8,13 @@ const DetailCreator = (props) => {
       <nav className="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li><Link to="/creators">Creators</Link></li>
-          <li className="is-active"><a href="#" aria-current="page">Detail</a></li>
+          <li className="is-active"><button>Detail</button></li>
         </ul>
       </nav>
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img src={props.creator.image} alt="Image" />
+            <img src={props.creator.image} alt="description-image" />
           </figure>
         </div>
         <div className="media-content">

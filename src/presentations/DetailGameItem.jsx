@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Tabs from "../components/Tabs/Tabs"
+import PropTypes from 'prop-types';
+import React from 'react';
+import Tabs from "../components/Tabs/Tabs";
 
 const showGenders = (genders) => {
     if (genders.length > 0) {
@@ -66,7 +66,7 @@ const DetailGameItem = (props) => {
                         <div className="media-content">
                             <ul>
                                 {props.game.stores.map((s) => {
-                                    return <li key={s.id}><a href={s.url} target="_blank">{s.store.name}</a></li>
+                                    return <li key={s.id}><button><a href={`${s.url}`} target="_blank" without rel="noreferrer">{s.store.name}</a></button></li>
                                 })}
                             </ul>
                         </div>

@@ -1,41 +1,31 @@
-import React, { Component } from 'react'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCreators } from "../actions/CreatorAction";
 import CreatorItem from "../presentations/CreatorItem";
-import { connect } from 'react-redux'
-import { fetchCreators } from "../actions/CreatorAction"
 
-class ListVideos extends Component {
-  constructor(props) {
-    super(props);
-    //this.state = { videos: this.props.videos }
-  }
+const ListVideos = () => {
+  const dispatch = useDispatch();
+  const creators = useSelector((state) => state.creators.items);
 
-  componentDidMount() {
-    this.props.fetchCreators()
-  }
+  useEffect(() => {
+    dispatch(fetchCreators());
+  }, [dispatch]);
 
-  renderCreatorItem() {
-    if (this.props.creators.length > 0) {
+  const renderCreatorItem = () => {
+    if (creators && creators.length > 0) {
       return (
         <div className="columns is-multiline">
-          {this.props.creators.map(creator => { return <CreatorItem key={creator.id} creator={creator} /> })}
+          {creators.map((creator) => (
+            <CreatorItem key={creator.id} creator={creator} />
+          ))}
         </div>
-      )
+      );
     }
 
-    return <h2 className="subtitle">No creators items to see</h2>
-  }
+    return <h2 className="subtitle">No creators items to see</h2>;
+  };
 
-  render() {
-    return (
-      <React.Fragment>
-        {this.renderCreatorItem()}
-      </React.Fragment> 
-    )
-  }
-}
+  return <>{renderCreatorItem()}</>;
+};
 
-const mapStateToProps = state => ({
-  creators: state.creators.items
-})
-
-export default connect(mapStateToProps, { fetchCreators })(ListVideos);
+export default ListVideos;

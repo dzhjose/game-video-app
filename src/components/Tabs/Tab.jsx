@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 class Tab extends Component {
   static propTypes = {
@@ -36,7 +36,7 @@ class Tab extends Component {
         className={className}
         onClick={onClick}
       >
-        <a className="tab-a">{label}</a>
+        <button className="tab-a">{label}</button>
       </li>
     );
   }

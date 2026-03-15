@@ -1,10 +1,10 @@
-import { combineReducers } from "redux";
-import { CreatorReducer } from "./creators";
-import { GamesReducer } from "./games";
+import { combineReducers } from "@reduxjs/toolkit";
+import creatorsReducer from "./creators";
+import gamesReducer from "./games";
 
-const rootReducers = combineReducers({
-  creators: CreatorReducer,
-  games: GamesReducer
+const rootReducer = combineReducers({
+  creators: creatorsReducer,
+  games: gamesReducer
 });
 
-export default rootReducers;
+export default rootReducer;

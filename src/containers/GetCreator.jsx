@@ -1,27 +1,21 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux';
-import {getItem} from '../actions/CreatorAction';
-import DetailCreator from '../presentations/DetailCreator';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getItem } from "../actions/CreatorAction";
+import DetailCreator from "../presentations/DetailCreator";
 
-class GetCreator extends Component {
-  constructor(props){
-    super(props);
-  }
+const GetCreator = ({ id }) => {
+  const dispatch = useDispatch();
+  const creator = useSelector((state) => state.creators.item);
 
-  componentDidMount(){
-    this.props.getItem(this.props.id);
-  }
-  render() {
-    return (
-      <React.Fragment>
-        <DetailCreator creator={this.props.creator}/>
-      </React.Fragment>
-    )
-  }
-}
+  useEffect(() => {
+    dispatch(getItem(id));
+  }, [dispatch, id]);
 
-const mapStateToProps = state => ({
-  creator: state.creators.item
-})
+  return (
+    <>
+      <DetailCreator creator={creator} />
+    </>
+  );
+};
 
-export default connect(mapStateToProps, {getItem}) (GetCreator);
+export default GetCreator;

@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { getGame } from "../actions/GamesAction"
-import DetailGameItem from "../presentations/DetailGameItem"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getGame } from "../actions/GamesAction";
+import DetailGameItem from "../presentations/DetailGameItem";
 
-class GetGame extends Component {
-  constructor(props) {
-    super(props);
-  }
+const GetGame = ({ id }) => {
+  const dispatch = useDispatch();
+  const game = useSelector((state) => state.games.game_item);
 
-  componentDidMount() {
-    this.props.getGame(this.props.id);
-  }
+  useEffect(() => {
+    dispatch(getGame(id));
+  }, [dispatch, id]);
 
-  _renderGameDetail(){
-    if(Object.keys(this.props.game).length > 0){
-      return <DetailGameItem game={this.props.game} />
+  const renderGameDetail = () => {
+    if (game && Object.keys(game).length > 0) {
+      return <DetailGameItem game={game} />;
     }
 
     return (
@@ -22,20 +21,9 @@ class GetGame extends Component {
         <h2>No game detail</h2>
       </div>
     );
-  }
+  };
 
+  return <>{renderGameDetail()}</>;
+};
 
-  render() {
-    return (
-      <React.Fragment>
-        {this._renderGameDetail()}
-      </React.Fragment>
-    )
-  }
-}
-
-const mapStateToProps = state => ({
-  game: state.games.game_item
-})
-
-export default connect(mapStateToProps, { getGame })(GetGame);
+export default GetGame;
