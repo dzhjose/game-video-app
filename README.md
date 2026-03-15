@@ -1,68 +1,167 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Games Video App
 
-## Available Scripts
+Aplicación web construida con **React 19** que consume la API pública de **RAWG Video Games Database** para mostrar videojuegos y creadores de contenido relacionados.
 
-In the project directory, you can run:
+El proyecto utiliza una arquitectura moderna basada en **Redux Toolkit**, **React Router v6** y **pnpm** como gestor de paquetes.
 
-### `npm start`
+---
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Tecnologías
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* React 19
+* Redux Toolkit
+* React Redux
+* React Router DOM v6
+* Axios
+* Bulma CSS
+* Sass
+* pnpm
+* Create React App
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# API utilizada
 
-### `npm run build`
+La aplicación consume datos desde:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+https://api.rawg.io/
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Endpoints principales usados:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* `/games`
+* `/games/{id}`
+* `/creators`
+* `/creators/{id}`
 
-### `npm run eject`
+> Nota: RAWG puede requerir API Key dependiendo del límite de requests.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Instalación
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Clonar el repositorio:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+git clone https://github.com/tu-usuario/games-video-app.git
+cd games-video-app
+```
 
-## Learn More
+Instalar dependencias usando **pnpm**:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+pnpm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+# Ejecutar el proyecto
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+pnpm start
+```
 
-### Analyzing the Bundle Size
+La aplicación estará disponible en:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```
+http://localhost:3000
+```
 
-### Making a Progressive Web App
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+# Build de producción
 
-### Advanced Configuration
+```bash
+pnpm build
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Los archivos compilados se generarán en:
 
-### Deployment
+```
+/build
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+---
 
-### `npm run build` fails to minify
+# Estructura del proyecto
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```
+src
+│
+├── actions
+│   ├── CreatorAction.js
+│   └── GamesAction.js
+│
+├── components
+│   ├── Footer.jsx
+│   ├── Header.jsx
+│   └── NavBar.jsx
+│
+├── pages
+│   ├── Home
+│   ├── Games
+│   └── Creators
+│
+├── reducers
+│   ├── creators.js
+│   ├── games.js
+│   └── index.js
+│
+├── presentations
+│   ├── GameItem.jsx
+│   ├── CreatorItem.jsx
+│   └── DetailGameItem.jsx
+│
+├── store
+│   └── store.js
+│
+└── index.js
+```
+
+---
+
+# Funcionalidades
+
+* Listado de videojuegos
+* Listado de creadores
+* Vista de detalle de juegos
+* Vista de detalle de creadores
+* Manejo de estado global con Redux
+* Consumo de API REST con Axios
+
+---
+
+# Scripts disponibles
+
+```bash
+pnpm start
+```
+
+Inicia el servidor de desarrollo.
+
+```
+pnpm build
+```
+
+Compila la aplicación para producción.
+
+```
+pnpm test
+```
+
+Ejecuta los tests.
+
+---
+
+# Mejoras futuras
+
+* Búsqueda de juegos
+* Paginación
+* Favoritos
+* Integración con API Key de RAWG
+* Migración de Create React App a Vite para mejorar rendimiento
+
+---
+
+# Licencia
+
+MIT
